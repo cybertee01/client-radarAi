@@ -1,128 +1,98 @@
-/* =================== USAGE ===================
-
-    import express = require("express");
-    var app = express();
-
- =============================================== */
-
-/// <reference types="express-serve-static-core" />
-/// <reference types="serve-static" />
-
-import bodyParser = require("body-parser");
-import * as core from "express-serve-static-core";
-import * as qs from "qs";
-import serveStatic = require("serve-static");
-
 /**
- * Creates an Express application. The express() function is a top-level function exported by the express module.
+ * License for programmatically and manually incorporated
+ * documentation aka. `JSDoc` from https://github.com/nodejs/node/tree/master/doc
+ *
+ * Copyright Node.js contributors. All rights reserved.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to
+ * deal in the Software without restriction, including without limitation the
+ * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+ * sell copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+ * IN THE SOFTWARE.
  */
-declare function e(): core.Express;
 
-declare namespace e {
-    /**
-     * This is a built-in middleware function in Express. It parses incoming requests with JSON payloads and is based on body-parser.
-     * @since 4.16.0
-     */
-    var json: typeof bodyParser.json;
+// NOTE: These definitions support Node.js and TypeScript 5.7+.
 
-    /**
-     * This is a built-in middleware function in Express. It parses incoming requests with Buffer payloads and is based on body-parser.
-     * @since 4.17.0
-     */
-    var raw: typeof bodyParser.raw;
+// Reference required TypeScript libs:
+/// <reference lib="es2020" />
 
-    /**
-     * This is a built-in middleware function in Express. It parses incoming requests with text payloads and is based on body-parser.
-     * @since 4.17.0
-     */
-    var text: typeof bodyParser.text;
+// TypeScript backwards-compatibility definitions:
+/// <reference path="compatibility/index.d.ts" />
 
-    /**
-     * These are the exposed prototypes.
-     */
-    var application: Application;
-    var request: Request;
-    var response: Response;
+// Definitions specific to TypeScript 5.7+:
+/// <reference path="globals.typedarray.d.ts" />
+/// <reference path="buffer.buffer.d.ts" />
 
-    /**
-     * This is a built-in middleware function in Express. It serves static files and is based on serve-static.
-     */
-    var static: serveStatic.RequestHandlerConstructor<Response>;
-
-    /**
-     * This is a built-in middleware function in Express. It parses incoming requests with urlencoded payloads and is based on body-parser.
-     * @since 4.16.0
-     */
-    var urlencoded: typeof bodyParser.urlencoded;
-
-    /**
-     * This is a built-in middleware function in Express. It parses incoming request query parameters.
-     */
-    export function query(options: qs.IParseOptions | typeof qs.parse): Handler;
-
-    export function Router(options?: RouterOptions): core.Router;
-
-    interface RouterOptions {
-        /**
-         * Enable case sensitivity.
-         */
-        caseSensitive?: boolean | undefined;
-
-        /**
-         * Preserve the req.params values from the parent router.
-         * If the parent and the child have conflicting param names, the child’s value take precedence.
-         *
-         * @default false
-         * @since 4.5.0
-         */
-        mergeParams?: boolean | undefined;
-
-        /**
-         * Enable strict routing.
-         */
-        strict?: boolean | undefined;
-    }
-
-    interface Application extends core.Application {}
-    interface CookieOptions extends core.CookieOptions {}
-    interface Errback extends core.Errback {}
-    interface ErrorRequestHandler<
-        P = core.ParamsDictionary,
-        ResBody = any,
-        ReqBody = any,
-        ReqQuery = core.Query,
-        Locals extends Record<string, any> = Record<string, any>,
-    > extends core.ErrorRequestHandler<P, ResBody, ReqBody, ReqQuery, Locals> {}
-    interface Express extends core.Express {}
-    interface Handler extends core.Handler {}
-    interface IRoute extends core.IRoute {}
-    interface IRouter extends core.IRouter {}
-    interface IRouterHandler<T> extends core.IRouterHandler<T> {}
-    interface IRouterMatcher<T> extends core.IRouterMatcher<T> {}
-    interface MediaType extends core.MediaType {}
-    interface NextFunction extends core.NextFunction {}
-    interface Locals extends core.Locals {}
-    interface Request<
-        P = core.ParamsDictionary,
-        ResBody = any,
-        ReqBody = any,
-        ReqQuery = core.Query,
-        Locals extends Record<string, any> = Record<string, any>,
-    > extends core.Request<P, ResBody, ReqBody, ReqQuery, Locals> {}
-    interface RequestHandler<
-        P = core.ParamsDictionary,
-        ResBody = any,
-        ReqBody = any,
-        ReqQuery = core.Query,
-        Locals extends Record<string, any> = Record<string, any>,
-    > extends core.RequestHandler<P, ResBody, ReqBody, ReqQuery, Locals> {}
-    interface RequestParamHandler extends core.RequestParamHandler {}
-    interface Response<
-        ResBody = any,
-        Locals extends Record<string, any> = Record<string, any>,
-    > extends core.Response<ResBody, Locals> {}
-    interface Router extends core.Router {}
-    interface Send extends core.Send {}
-}
-
-export = e;
+// Definitions for Node.js modules that are not specific to any version of TypeScript:
+/// <reference path="globals.d.ts" />
+/// <reference path="web-globals/abortcontroller.d.ts" />
+/// <reference path="web-globals/domexception.d.ts" />
+/// <reference path="web-globals/events.d.ts" />
+/// <reference path="web-globals/fetch.d.ts" />
+/// <reference path="web-globals/navigator.d.ts" />
+/// <reference path="web-globals/storage.d.ts" />
+/// <reference path="web-globals/streams.d.ts" />
+/// <reference path="assert.d.ts" />
+/// <reference path="assert/strict.d.ts" />
+/// <reference path="async_hooks.d.ts" />
+/// <reference path="buffer.d.ts" />
+/// <reference path="child_process.d.ts" />
+/// <reference path="cluster.d.ts" />
+/// <reference path="console.d.ts" />
+/// <reference path="constants.d.ts" />
+/// <reference path="crypto.d.ts" />
+/// <reference path="dgram.d.ts" />
+/// <reference path="diagnostics_channel.d.ts" />
+/// <reference path="dns.d.ts" />
+/// <reference path="dns/promises.d.ts" />
+/// <reference path="domain.d.ts" />
+/// <reference path="events.d.ts" />
+/// <reference path="fs.d.ts" />
+/// <reference path="fs/promises.d.ts" />
+/// <reference path="http.d.ts" />
+/// <reference path="http2.d.ts" />
+/// <reference path="https.d.ts" />
+/// <reference path="inspector.d.ts" />
+/// <reference path="inspector.generated.d.ts" />
+/// <reference path="module.d.ts" />
+/// <reference path="net.d.ts" />
+/// <reference path="os.d.ts" />
+/// <reference path="path.d.ts" />
+/// <reference path="perf_hooks.d.ts" />
+/// <reference path="process.d.ts" />
+/// <reference path="punycode.d.ts" />
+/// <reference path="querystring.d.ts" />
+/// <reference path="readline.d.ts" />
+/// <reference path="readline/promises.d.ts" />
+/// <reference path="repl.d.ts" />
+/// <reference path="sea.d.ts" />
+/// <reference path="sqlite.d.ts" />
+/// <reference path="stream.d.ts" />
+/// <reference path="stream/promises.d.ts" />
+/// <reference path="stream/consumers.d.ts" />
+/// <reference path="stream/web.d.ts" />
+/// <reference path="string_decoder.d.ts" />
+/// <reference path="test.d.ts" />
+/// <reference path="timers.d.ts" />
+/// <reference path="timers/promises.d.ts" />
+/// <reference path="tls.d.ts" />
+/// <reference path="trace_events.d.ts" />
+/// <reference path="tty.d.ts" />
+/// <reference path="url.d.ts" />
+/// <reference path="util.d.ts" />
+/// <reference path="v8.d.ts" />
+/// <reference path="vm.d.ts" />
+/// <reference path="wasi.d.ts" />
+/// <reference path="worker_threads.d.ts" />
+/// <reference path="zlib.d.ts" />
