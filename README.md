@@ -1,15 +1,15 @@
 # Installation
-> `npm install --save @types/connect`
+> `npm install --save @types/express`
 
 # Summary
-This package contains type definitions for connect (https://github.com/senchalabs/connect).
+This package contains type definitions for express (http://expressjs.com).
 
 # Details
-Files were exported from https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/connect.
+Files were exported from https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/express/v4.
 
 ### Additional Details
- * Last updated: Mon, 06 Nov 2023 22:41:05 GMT
- * Dependencies: [@types/node](https://npmjs.com/package/@types/node)
+ * Last updated: Mon, 27 Oct 2025 20:34:59 GMT
+ * Dependencies: [@types/body-parser](https://npmjs.com/package/@types/body-parser), [@types/express-serve-static-core](https://npmjs.com/package/@types/express-serve-static-core), [@types/qs](https://npmjs.com/package/@types/qs), [@types/serve-static](https://npmjs.com/package/@types/serve-static)
 
 # Credits
-These definitions were written by [Maxime LUCE](https://github.com/SomaticIT), and [Evan Hahn](https://github.com/EvanHahn).
+These definitions were written by [Boris Yankov](https://github.com/borisyankov), [Puneet Arora](https://github.com/puneetar), [Dylan Frankland](https://github.com/dfrankland), and [Sebastian Beltran](https://github.com/bjohansebas).

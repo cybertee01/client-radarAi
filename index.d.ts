@@ -1,91 +1,128 @@
-/// <reference types="node" />
+/* =================== USAGE ===================
 
-import * as http from "http";
+    import express = require("express");
+    var app = express();
+
+ =============================================== */
+
+/// <reference types="express-serve-static-core" />
+/// <reference types="serve-static" />
+
+import bodyParser = require("body-parser");
+import * as core from "express-serve-static-core";
+import * as qs from "qs";
+import serveStatic = require("serve-static");
 
 /**
- * Create a new connect server.
+ * Creates an Express application. The express() function is a top-level function exported by the express module.
  */
-declare function createServer(): createServer.Server;
+declare function e(): core.Express;
 
-declare namespace createServer {
-    export type ServerHandle = HandleFunction | http.Server;
+declare namespace e {
+    /**
+     * This is a built-in middleware function in Express. It parses incoming requests with JSON payloads and is based on body-parser.
+     * @since 4.16.0
+     */
+    var json: typeof bodyParser.json;
 
-    export class IncomingMessage extends http.IncomingMessage {
-        originalUrl?: http.IncomingMessage["url"] | undefined;
-    }
+    /**
+     * This is a built-in middleware function in Express. It parses incoming requests with Buffer payloads and is based on body-parser.
+     * @since 4.17.0
+     */
+    var raw: typeof bodyParser.raw;
 
-    type NextFunction = (err?: any) => void;
+    /**
+     * This is a built-in middleware function in Express. It parses incoming requests with text payloads and is based on body-parser.
+     * @since 4.17.0
+     */
+    var text: typeof bodyParser.text;
 
-    export type SimpleHandleFunction = (req: IncomingMessage, res: http.ServerResponse) => void;
-    export type NextHandleFunction = (req: IncomingMessage, res: http.ServerResponse, next: NextFunction) => void;
-    export type ErrorHandleFunction = (
-        err: any,
-        req: IncomingMessage,
-        res: http.ServerResponse,
-        next: NextFunction,
-    ) => void;
-    export type HandleFunction = SimpleHandleFunction | NextHandleFunction | ErrorHandleFunction;
+    /**
+     * These are the exposed prototypes.
+     */
+    var application: Application;
+    var request: Request;
+    var response: Response;
 
-    export interface ServerStackItem {
-        route: string;
-        handle: ServerHandle;
-    }
+    /**
+     * This is a built-in middleware function in Express. It serves static files and is based on serve-static.
+     */
+    var static: serveStatic.RequestHandlerConstructor<Response>;
 
-    export interface Server extends NodeJS.EventEmitter {
-        (req: http.IncomingMessage, res: http.ServerResponse, next?: Function): void;
+    /**
+     * This is a built-in middleware function in Express. It parses incoming requests with urlencoded payloads and is based on body-parser.
+     * @since 4.16.0
+     */
+    var urlencoded: typeof bodyParser.urlencoded;
 
-        route: string;
-        stack: ServerStackItem[];
+    /**
+     * This is a built-in middleware function in Express. It parses incoming request query parameters.
+     */
+    export function query(options: qs.IParseOptions | typeof qs.parse): Handler;
+
+    export function Router(options?: RouterOptions): core.Router;
+
+    interface RouterOptions {
+        /**
+         * Enable case sensitivity.
+         */
+        caseSensitive?: boolean | undefined;
 
         /**
-         * Utilize the given middleware `handle` to the given `route`,
-         * defaulting to _/_. This "route" is the mount-point for the
-         * middleware, when given a value other than _/_ the middleware
-         * is only effective when that segment is present in the request's
-         * pathname.
+         * Preserve the req.params values from the parent router.
+         * If the parent and the child have conflicting param names, the child’s value take precedence.
          *
-         * For example if we were to mount a function at _/admin_, it would
-         * be invoked on _/admin_, and _/admin/settings_, however it would
-         * not be invoked for _/_, or _/posts_.
+         * @default false
+         * @since 4.5.0
          */
-        use(fn: NextHandleFunction): Server;
-        use(fn: HandleFunction): Server;
-        use(route: string, fn: NextHandleFunction): Server;
-        use(route: string, fn: HandleFunction): Server;
+        mergeParams?: boolean | undefined;
 
         /**
-         * Handle server requests, punting them down
-         * the middleware stack.
+         * Enable strict routing.
          */
-        handle(req: http.IncomingMessage, res: http.ServerResponse, next: Function): void;
-
-        /**
-         * Listen for connections.
-         *
-         * This method takes the same arguments
-         * as node's `http.Server#listen()`.
-         *
-         * HTTP and HTTPS:
-         *
-         * If you run your application both as HTTP
-         * and HTTPS you may wrap them individually,
-         * since your Connect "server" is really just
-         * a JavaScript `Function`.
-         *
-         *      var connect = require('connect')
-         *        , http = require('http')
-         *        , https = require('https');
-         *
-         *      var app = connect();
-         *
-         *      http.createServer(app).listen(80);
-         *      https.createServer(options, app).listen(443);
-         */
-        listen(port: number, hostname?: string, backlog?: number, callback?: Function): http.Server;
-        listen(port: number, hostname?: string, callback?: Function): http.Server;
-        listen(path: string, callback?: Function): http.Server;
-        listen(handle: any, listeningListener?: Function): http.Server;
+        strict?: boolean | undefined;
     }
+
+    interface Application extends core.Application {}
+    interface CookieOptions extends core.CookieOptions {}
+    interface Errback extends core.Errback {}
+    interface ErrorRequestHandler<
+        P = core.ParamsDictionary,
+        ResBody = any,
+        ReqBody = any,
+        ReqQuery = core.Query,
+        Locals extends Record<string, any> = Record<string, any>,
+    > extends core.ErrorRequestHandler<P, ResBody, ReqBody, ReqQuery, Locals> {}
+    interface Express extends core.Express {}
+    interface Handler extends core.Handler {}
+    interface IRoute extends core.IRoute {}
+    interface IRouter extends core.IRouter {}
+    interface IRouterHandler<T> extends core.IRouterHandler<T> {}
+    interface IRouterMatcher<T> extends core.IRouterMatcher<T> {}
+    interface MediaType extends core.MediaType {}
+    interface NextFunction extends core.NextFunction {}
+    interface Locals extends core.Locals {}
+    interface Request<
+        P = core.ParamsDictionary,
+        ResBody = any,
+        ReqBody = any,
+        ReqQuery = core.Query,
+        Locals extends Record<string, any> = Record<string, any>,
+    > extends core.Request<P, ResBody, ReqBody, ReqQuery, Locals> {}
+    interface RequestHandler<
+        P = core.ParamsDictionary,
+        ResBody = any,
+        ReqBody = any,
+        ReqQuery = core.Query,
+        Locals extends Record<string, any> = Record<string, any>,
+    > extends core.RequestHandler<P, ResBody, ReqBody, ReqQuery, Locals> {}
+    interface RequestParamHandler extends core.RequestParamHandler {}
+    interface Response<
+        ResBody = any,
+        Locals extends Record<string, any> = Record<string, any>,
+    > extends core.Response<ResBody, Locals> {}
+    interface Router extends core.Router {}
+    interface Send extends core.Send {}
 }
 
-export = createServer;
+export = e;
