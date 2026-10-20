@@ -1,84 +1,62 @@
-# @vitest/snapshot
+# call-bind-apply-helpers <sup>[![Version Badge][npm-version-svg]][package-url]</sup>
 
-Lightweight implementation of Jest's snapshots.
+[![github actions][actions-image]][actions-url]
+[![coverage][codecov-image]][codecov-url]
+[![dependency status][deps-svg]][deps-url]
+[![dev dependency status][dev-deps-svg]][dev-deps-url]
+[![License][license-image]][license-url]
+[![Downloads][downloads-image]][downloads-url]
 
-## Usage
+[![npm badge][npm-badge-png]][package-url]
+
+Helper functions around Function call/apply/bind, for use in `call-bind`.
+
+The only packages that should likely ever use this package directly are `call-bind` and `get-intrinsic`.
+Please use `call-bind` unless you have a very good reason not to.
+
+## Getting started
+
+```sh
+npm install --save call-bind-apply-helpers
+```
+
+## Usage/Examples
 
 ```js
-import { SnapshotClient } from '@vitest/snapshot'
-import { NodeSnapshotEnvironment } from '@vitest/snapshot/environment'
-import { SnapshotManager } from '@vitest/snapshot/manager'
+const assert = require('assert');
+const callBindBasic = require('call-bind-apply-helpers');
 
-const client = new SnapshotClient({
-  // you need to provide your own equality check implementation if you use it
-  // this function is called when `.toMatchSnapshot({ property: 1 })` is called
-  isEqual: (received, expected) =>
-    equals(received, expected, [iterableEquality, subsetEquality]),
-})
-
-// class that implements snapshot saving and reading
-// by default uses fs module, but you can provide your own implementation depending on the environment
-const environment = new NodeSnapshotEnvironment()
-
-// you need to implement this yourselves,
-// this depends on your runner
-function getCurrentFilepath() {
-  return '/file.spec.js'
-}
-function getCurrentTestName() {
-  return 'test1'
+function f(a, b) {
+	assert.equal(this, 1);
+	assert.equal(a, 2);
+	assert.equal(b, 3);
+	assert.equal(arguments.length, 2);
 }
 
-// example for inline snapshots, nothing is required to support regular snapshots,
-// just call `assert` with `isInline: false`
-function wrapper(received) {
-  function __INLINE_SNAPSHOT__(inlineSnapshot, message) {
-    client.assert({
-      received,
-      message,
-      isInline: true,
-      inlineSnapshot,
-      filepath: getCurrentFilepath(),
-      name: getCurrentTestName(),
-    })
-  }
-  return {
-    // the name is hard-coded, it should be inside another function, so Vitest can find the actual test file where it was called (parses call stack trace + 2)
-    // you can override this behaviour in SnapshotState's `_inferInlineSnapshotStack` method by providing your own SnapshotState to SnapshotClient constructor
-    toMatchInlineSnapshot: (...args) => __INLINE_SNAPSHOT__(...args),
-  }
-}
+const fBound = callBindBasic([f, 1]);
 
-const options = {
-  updateSnapshot: 'new',
-  snapshotEnvironment: environment,
-}
+delete Function.prototype.call;
+delete Function.prototype.bind;
 
-await client.startCurrentRun(
-  getCurrentFilepath(),
-  getCurrentTestName(),
-  options
-)
-
-// this will save snapshot to a file which is returned by "snapshotEnvironment.resolvePath"
-client.assert({
-  received: 'some text',
-  isInline: false,
-})
-
-// uses "pretty-format", so it requires quotes
-// also naming is hard-coded when parsing test files
-wrapper('text 1').toMatchInlineSnapshot()
-wrapper('text 2').toMatchInlineSnapshot('"text 2"')
-
-const result = await client.finishCurrentRun() // this saves files and returns SnapshotResult
-
-// you can use manager to manage several clients
-const manager = new SnapshotManager(options)
-manager.add(result)
-
-// do something
-// and then read the summary
-
-console.log(manager.summary)
+fBound(2, 3);
 ```
+
+## Tests
+
+Clone the repo, `npm install`, and run `npm test`
+
+[package-url]: https://npmjs.org/package/call-bind-apply-helpers
+[npm-version-svg]: https://versionbadg.es/ljharb/call-bind-apply-helpers.svg
+[deps-svg]: https://david-dm.org/ljharb/call-bind-apply-helpers.svg
+[deps-url]: https://david-dm.org/ljharb/call-bind-apply-helpers
+[dev-deps-svg]: https://david-dm.org/ljharb/call-bind-apply-helpers/dev-status.svg
+[dev-deps-url]: https://david-dm.org/ljharb/call-bind-apply-helpers#info=devDependencies
+[npm-badge-png]: https://nodei.co/npm/call-bind-apply-helpers.png?downloads=true&stars=true
+[license-image]: https://img.shields.io/npm/l/call-bind-apply-helpers.svg
+[license-url]: LICENSE
+[downloads-image]: https://img.shields.io/npm/dm/call-bind-apply-helpers.svg
+[downloads-url]: https://npm-stat.com/charts.html?package=call-bind-apply-helpers
+[codecov-image]: https://codecov.io/gh/ljharb/call-bind-apply-helpers/branch/main/graphs/badge.svg
+[codecov-url]: https://app.codecov.io/gh/ljharb/call-bind-apply-helpers/
+[actions-image]: https://img.shields.io/endpoint?url=https://github-actions-badge-u3jn4tfpocch.runkit.sh/ljharb/call-bind-apply-helpers
+[actions-url]: https://github.com/ljharb/call-bind-apply-helpers/actions
