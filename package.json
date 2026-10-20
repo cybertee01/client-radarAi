@@ -1,22 +1,32 @@
 {
-  "name": "@rollup/rollup-win32-x64-gnu",
-  "version": "4.64.10",
-  "os": [
-    "win32"
-  ],
-  "cpu": [
-    "x64"
-  ],
-  "files": [
-    "rollup.win32-x64-gnu.node"
-  ],
-  "description": "Native bindings for Rollup",
-  "author": "Lukas Taegert-Atkinson",
-  "homepage": "https://rollupjs.org/",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rollup/rollup.git"
-  },
-  "main": "./rollup.win32-x64-gnu.node"
+    "name": "@types/connect",
+    "version": "3.4.38",
+    "description": "TypeScript definitions for connect",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/connect",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Maxime LUCE",
+            "githubUsername": "SomaticIT",
+            "url": "https://github.com/SomaticIT"
+        },
+        {
+            "name": "Evan Hahn",
+            "githubUsername": "EvanHahn",
+            "url": "https://github.com/EvanHahn"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/connect"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/node": "*"
+    },
+    "typesPublisherContentHash": "8990242237504bdec53088b79e314b94bec69286df9de56db31f22de403b4092",
+    "typeScriptVersion": "4.5"
 }
