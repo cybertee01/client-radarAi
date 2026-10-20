@@ -1,45 +1,44 @@
 {
-    "name": "@types/serve-static",
-    "version": "1.15.10",
-    "description": "TypeScript definitions for serve-static",
-    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/serve-static",
-    "license": "MIT",
-    "contributors": [
-        {
-            "name": "Uros Smolnik",
-            "githubUsername": "urossmolnik",
-            "url": "https://github.com/urossmolnik"
-        },
-        {
-            "name": "Linus Unnebäck",
-            "githubUsername": "LinusU",
-            "url": "https://github.com/LinusU"
-        },
-        {
-            "name": "Devansh Jethmalani",
-            "githubUsername": "devanshj",
-            "url": "https://github.com/devanshj"
-        },
-        {
-            "name": "Sebastian Beltran",
-            "githubUsername": "bjohansebas",
-            "url": "https://github.com/bjohansebas"
-        }
-    ],
-    "main": "",
-    "types": "index.d.ts",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
-        "directory": "types/serve-static"
+  "name": "@vitest/pretty-format",
+  "type": "module",
+  "version": "3.2.7",
+  "description": "Fork of pretty-format with support for ESM",
+  "license": "MIT",
+  "funding": "https://opencollective.com/vitest",
+  "homepage": "https://github.com/vitest-dev/vitest/tree/main/packages/utils#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitest-dev/vitest.git",
+    "directory": "packages/pretty-format"
+  },
+  "bugs": {
+    "url": "https://github.com/vitest-dev/vitest/issues"
+  },
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     },
-    "scripts": {},
-    "dependencies": {
-        "@types/http-errors": "*",
-        "@types/node": "*",
-        "@types/send": "<1"
-    },
-    "peerDependencies": {},
-    "typesPublisherContentHash": "b75ab4202e7deb055a8325b874f7f7c37aeb60ba7e215c1566e1ff30cdbf158f",
-    "typeScriptVersion": "5.2"
+    "./*": "./*"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "*.d.ts",
+    "dist"
+  ],
+  "dependencies": {
+    "tinyrainbow": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/react-is": "^19.0.0",
+    "react-is": "^19.1.0",
+    "react-is-18": "npm:react-is@18.3.1"
+  },
+  "scripts": {
+    "build": "rimraf dist && rollup -c",
+    "dev": "rollup -c --watch"
+  }
 }
