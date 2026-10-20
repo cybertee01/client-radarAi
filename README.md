@@ -1,15 +1,15 @@
 # Installation
-> `npm install --save @types/node`
+> `npm install --save @types/serve-static`
 
 # Summary
-This package contains type definitions for node (https://nodejs.org/).
+This package contains type definitions for serve-static (https://github.com/expressjs/serve-static).
 
 # Details
-Files were exported from https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/node/v22.
+Files were exported from https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/serve-static.
 
 ### Additional Details
- * Last updated: Thu, 01 Oct 2026 22:35:12 GMT
- * Dependencies: [undici-types](https://npmjs.com/package/undici-types)
+ * Last updated: Fri, 24 Oct 2025 04:02:41 GMT
+ * Dependencies: [@types/http-errors](https://npmjs.com/package/@types/http-errors), [@types/node](https://npmjs.com/package/@types/node), [@types/send](https://npmjs.com/package/@types/send)
 
 # Credits
-These definitions were written by [Microsoft TypeScript](https://github.com/Microsoft), [Alberto Schiabel](https://github.com/jkomyno), [Andrew Makarov](https://github.com/r3nya), [Benjamin Toueg](https://github.com/btoueg), [David Junger](https://github.com/touffy), [Mohsen Azimi](https://github.com/mohsen1), [Nikita Galkin](https://github.com/galkin), [Sebastian Silbermann](https://github.com/eps1lon), [Wilco Bakker](https://github.com/WilcoBakker), [Trivikram Kamat](https://github.com/trivikr), [Junxiao Shi](https://github.com/yoursunny), [ExE Boss](https://github.com/ExE-Boss), [Piotr Błażejewicz](https://github.com/peterblazejewicz), [Anna Henningsen](https://github.com/addaleax), [NodeJS Contributors](https://github.com/NodeJS), [Linus Unnebäck](https://github.com/LinusU), [wafuwafu13](https://github.com/wafuwafu13), [Matteo Collina](https://github.com/mcollina), [Dmitry Semigradsky](https://github.com/Semigradsky), and [René](https://github.com/Renegade334).
+These definitions were written by [Uros Smolnik](https://github.com/urossmolnik), [Linus Unnebäck](https://github.com/LinusU), [Devansh Jethmalani](https://github.com/devanshj), and [Sebastian Beltran](https://github.com/bjohansebas).
